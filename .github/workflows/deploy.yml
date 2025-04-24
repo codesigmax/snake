@@ -14,11 +14,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create dist directory
+      - name: Create dist directory and copy assets
         run: |
           mkdir -p dist
-          cp index.html dist/
-          cp game.js dist/
+          cp -r index.html game.js dist/
+          # 确保所有静态资源都被复制
+          if [ -d "assets" ]; then
+            cp -r assets dist/
+          fi
+          if [ -d "css" ]; then
+            cp -r css dist/
+          fi
+          if [ -d "js" ]; then
+            cp -r js dist/
+          fi
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
