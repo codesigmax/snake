@@ -23,6 +23,9 @@ const gameOverElement = document.getElementById('game-over');
 const finalScoreElement = document.getElementById('final-score');
 
 // 初始化游戏
+window.onload = function() {
+    document.getElementById('start-screen').style.display = 'block';
+};
 function initGame() {
     // 初始化蛇的位置
     const centerX = Math.floor(canvas.width / config.gridSize / 2);
@@ -39,6 +42,7 @@ function initGame() {
     score = 0;
     updateScore();
     generateFood();
+    document.getElementById('start-screen').style.display = 'none';
     gameOverElement.style.display = 'none';
 }
 
@@ -67,6 +71,15 @@ function gameOver() {
     clearInterval(gameLoop);
     gameOverElement.style.display = 'block';
 }
+
+function startGame() {
+    initGame();
+    if (gameLoop) clearInterval(gameLoop);
+    gameLoop = setInterval(gameStep, config.initialSpeed);
+}
+
+// 显示开始界面
+document.getElementById('start-screen').style.display = 'block';
 
 // 检查碰撞
 function checkCollision(head) {
@@ -239,5 +252,5 @@ canvas.addEventListener('touchend', (event) => {
     }
 });
 
-// 启动游戏
-startGame();
+// 游戏初始化时显示开始界面
+document.getElementById('start-screen').style.display = 'block';

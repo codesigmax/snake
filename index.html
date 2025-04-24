@@ -29,7 +29,7 @@
             font-size: 20px;
             font-weight: bold;
         }
-        #game-over {
+        .game-modal {
             display: none;
             position: absolute;
             top: 50%;
@@ -60,7 +60,11 @@
     <div id="game-container">
         <div id="score">分数: 0</div>
         <canvas id="game-canvas" width="400" height="400"></canvas>
-        <div id="game-over">
+        <div id="start-screen" class="game-modal">
+            <h2>贪吃蛇</h2>
+            <button onclick="startGame()">开始游戏</button>
+        </div>
+        <div id="game-over" class="game-modal">
             <h2>游戏结束!</h2>
             <p>最终分数: <span id="final-score">0</span></p>
             <button onclick="startGame()">重新开始</button>
