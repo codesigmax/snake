@@ -252,5 +252,7 @@ canvas.addEventListener('touchend', (event) => {
     }
 });
 
-// 游戏初始化时显示开始界面
-document.getElementById('start-screen').style.display = 'block';
+// 确保DOM加载完成后再初始化游戏
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('start-screen').style.display = 'block';
+});
